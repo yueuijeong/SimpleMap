@@ -52,8 +52,18 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
             
+        let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+            
             if annotation.title! == "부산시민공원" {
                 annotationView?.pinTintColor = UIColor.green
+                leftIconView.image = UIImage(named:"park.png" )
+                annotationView?.leftCalloutAccessoryView = leftIconView
+            }
+            
+            if annotation.title! == "DIT 동의과학대학교" {
+                annotationView?.pinTintColor = UIColor.green
+                leftIconView.image = UIImage(named:"dit.png" )
+                annotationView?.leftCalloutAccessoryView = leftIconView
             }
             
             
@@ -61,9 +71,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
-        let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-        leftIconView.image = UIImage(named:"bright-7.png" )
-        annotationView?.leftCalloutAccessoryView = leftIconView
+       
         
         let btn = UIButton(type: .detailDisclosure)
         annotationView?.rightCalloutAccessoryView = btn
@@ -71,24 +79,21 @@ class ViewController: UIViewController, MKMapViewDelegate {
         return annotationView
         
     }
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
-        print("Accesary Button tapped!!!!")
-}
     
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        
-//        print("callout Accessory Tapped!")
-//        
-//        let viewAnno = view.annotation
-//        let viewTitle: String = ((viewAnno?.title)!)!
-//        let viewSubTitle: String = ((viewAnno?.subtitle)!)!
-//        
-//        print("\(viewTitle) \(viewSubTitle)")
-//        
-//        let ac = UIAlertController(title: viewTitle, message: viewSubTitle, preferredStyle: .alert)
-//        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        present(ac, animated: true, completion: nil)
-//    }
-//
-//}
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        print("callout Accessory Tapped!")
+        
+        let viewAnno = view.annotation
+        let viewTitle: String = ((viewAnno?.title)!)!
+        let viewSubTitle: String = ((viewAnno?.subtitle)!)!
+        
+        print("\(viewTitle) \(viewSubTitle)")
+        
+        let ac = UIAlertController(title: viewTitle, message: viewSubTitle, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
+    }
+
 }
+
